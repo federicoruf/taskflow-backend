@@ -9,6 +9,10 @@ const errorHandler = (err, req, res, next) => {
     message: err.message || "Error interno del servidor",
   };
 
+  if (err.field) {
+    response.field = err.field;
+  }
+
   if (process.env.NODE_ENV !== "production") {
     response.stack = err.stack;
   }

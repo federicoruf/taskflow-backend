@@ -4,6 +4,18 @@ const logger = require("../config/logger");
 const createTask = async (taskData, userId) => {
   const { title, description, assignedTo } = taskData;
 
+  const existingTask = await Task.findOne({ 
+    title: { $regex: new RegExp(`^${title.trim()}$`, 'i') },
+    user: userId
+  });
+
+  if (existingTask) {
+    const error = new Error("Ya tienes una tarea creada con este mismo título");
+    error.statusCode = 400;
+    error.field = 'title';
+    throw error;
+  }
+
   const task = await Task.create({
     title,
     description,

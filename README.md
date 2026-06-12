@@ -43,7 +43,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 curl -X POST http://localhost:5000/api/tasks \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <TU_TOKEN_JWT>" \
-  -d '{"title": "Mi primera tarea", "description": "Tengo que terminar el backend de TaskFlow"}'
+  -d '{"title": "Mi primera tarea", "description": "Tengo que terminar el backend de TaskFlow", assignedTo: "federico", "status": "pendiente"}'
 ```
 
 ### 4. Obtener mis Tareas (Ruta Protegida)
@@ -52,4 +52,22 @@ curl -X POST http://localhost:5000/api/tasks \
 ```bash
 curl -X GET http://localhost:5000/api/tasks \
   -H "Authorization: Bearer <TU_TOKEN_JWT>" 
+```
+
+### 5. Actualizar una Tarea (Ruta Protegida)
+*Reemplaza `TASK_ID` por el id de la tarea que quieres actualizar y `<TU_TOKEN_JWT>` por el string que te devolvió el login o el registro o el login.*
+
+```bash
+curl -X PUT http://localhost:5000/api/tasks/TASK_ID \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <TU_TOKEN_JWT>" \
+  -d '{"title": "Mi primera tarea", "description": "Tengo que terminar el backend de TaskFlow", assignedTo: "federico", "status": "completada"}'
+```
+
+### 6. Eliminar una Tarea (Ruta Protegida)
+*Reemplaza `TASK_ID` por el id de la tarea que quieres eliminar y `<TU_TOKEN_JWT>` por el string que te devolvió el login o el registro o el login.*
+
+```bash
+curl -X DELETE http://localhost:5000/api/tasks/TASK_ID \
+  -H "Authorization: Bearer <TU_TOKEN_JWT>"
 ```

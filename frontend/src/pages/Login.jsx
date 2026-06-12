@@ -1,4 +1,3 @@
-// src/pages/Login.jsx
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import {
@@ -25,7 +24,6 @@ const Login = (props) => {
     e.preventDefault();
     setError("");
 
-    // Validación básica en el cliente antes de golpear el backend
     if (!email || !password) {
       setError("Por favor, rellena todos los campos");
       return;
@@ -38,13 +36,10 @@ const Login = (props) => {
     if (!result.success) {
       setError(result.error);
     }
-    // Si tiene éxito, el contexto cambiará el estado 'user' y
-    // nuestro App.jsx se encargará de moverlo de pantalla automáticamente.
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      {/* Box centrado verticalmente para dar el diseño amigable y responsivo */}
       <Box
         sx={{
           marginTop: 8,

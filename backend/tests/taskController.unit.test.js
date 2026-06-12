@@ -20,7 +20,7 @@ describe("taskController", () => {
     jest.clearAllMocks();
   });
 
-  describe("Función: getTasks", () => {
+  describe("getTasks", () => {
     it("Debería responder con 200 y el listado de tareas del usuario", async () => {
       const mockTasks = [
         { _id: "task_1", title: "Tarea 1", user: "user_authenticated_123" },
@@ -39,7 +39,7 @@ describe("taskController", () => {
     });
   });
 
-  describe("Función: createTask", () => {
+  describe("createTask", () => {
     it("Debería responder con 201 y la tarea creada", async () => {
       const mockCreatedTask = {
         _id: "task_999",
@@ -61,7 +61,7 @@ describe("taskController", () => {
     });
   });
 
-  describe("Función: updateTask", () => {
+  describe("updateTask", () => {
     it("Debería responder con 403 si el servicio deniega la autoría", async () => {
       const fakeError = new Error(
         "No tienes autorización para modificar esta tarea",
@@ -79,7 +79,7 @@ describe("taskController", () => {
     });
   });
 
-  describe("Función: deleteTask", () => {
+  describe("deleteTask", () => {
     it("Debería responder con 200 y el mensaje de confirmación si se elimina con éxito", async () => {
       const mockServiceResult = { message: "Tarea eliminada correctamente" };
       req.params.id = "task_123";

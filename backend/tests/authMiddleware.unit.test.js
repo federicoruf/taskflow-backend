@@ -1,4 +1,4 @@
-const { protect } = require("../middlewares/authMiddleware"); // Ajusta la ruta si es necesario
+const { protect } = require("../middlewares/authMiddleware");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 

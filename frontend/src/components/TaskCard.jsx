@@ -15,7 +15,6 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import { taskService } from '../services/taskService';
 
 const TaskCard = ({ task, onDelete }) => {
-  // ✅ Ajustado al enum 'status' de tu Mongoose Schema
   const [isCompleted, setIsCompleted] = useState(task.status === 'completada');
   const [updating, setUpdating] = useState(false);
 
@@ -24,7 +23,6 @@ const TaskCard = ({ task, onDelete }) => {
       setUpdating(true);
       const nextState = !isCompleted;
       
-      // Llama a tu servicio que mapea el booleano al string ('completada'/'pendiente')
       await taskService.updateStatus(task._id, nextState);
       setIsCompleted(nextState);
     } catch {

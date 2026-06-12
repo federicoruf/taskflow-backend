@@ -3,7 +3,7 @@ const connectDB = require('../config/db');
 
 require('dotenv').config();
 
-describe('Tests de Modelo: User', () => {
+describe('UserModel', () => {
   const testEmail = 'model_test@example.com';
 
   jest.setTimeout(15000);
@@ -20,7 +20,7 @@ describe('Tests de Modelo: User', () => {
     await User.deleteMany({ email: testEmail });
   });
 
-  it('🔒 Debería encriptar la contraseña correctamente antes de guardar (pre-save hook)', async () => {
+  it('Debería encriptar la contraseña correctamente antes de guardar (pre-save hook)', async () => {
     const rawPassword = 'passwordSeguro123';
     
     const user = new User({

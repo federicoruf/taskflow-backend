@@ -1,4 +1,3 @@
-// src/pages/Register.jsx
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
@@ -25,7 +24,6 @@ const Register = ({ onNavigateToLogin }) => {
     e.preventDefault();
     setError('');
 
-    // Validaciones básicas en el cliente
     if (!name.trim() || !email.trim() || !password.trim()) {
       setError('Todos los campos son obligatorios');
       return;
@@ -43,7 +41,6 @@ const Register = ({ onNavigateToLogin }) => {
       if (!result.success) {
         setError(result.error);
       }
-      // Si tiene éxito, el AuthContext actualiza 'user' y App.jsx nos moverá al Dashboard
     } catch {
       setError('Ocurrió un error inesperado');
     } finally {
@@ -104,7 +101,7 @@ const Register = ({ onNavigateToLogin }) => {
               type="submit"
               fullWidth
               variant="contained"
-              color="secondary" // Cambiamos a color secundario para diferenciarlo visualmente del Login
+              color="secondary"
               startIcon={<PersonAddIcon />}
               disabled={submitting}
               sx={{ mt: 3, mb: 2, padding: 1.2, fontWeight: 'bold' }}

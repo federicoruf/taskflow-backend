@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 
 jest.mock('jsonwebtoken');
 
-describe('Tests Unitarios: authService', () => {
+describe('authService', () => {
   
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  describe('Función: login', () => {
+  describe('login', () => {
     
     it('Debería lanzar un error si el usuario no existe', async () => {
       jest.spyOn(User, 'findOne').mockReturnValue({

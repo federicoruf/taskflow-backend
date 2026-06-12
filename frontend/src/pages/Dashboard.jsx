@@ -1,4 +1,3 @@
-// src/pages/Dashboard.jsx
 import { useState, useEffect } from "react";
 import { taskService } from "../services/taskService";
 import {
@@ -18,7 +17,6 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // 🔄 Cargar las tareas del usuario al montar el componente
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -35,12 +33,10 @@ const Dashboard = () => {
     fetchTasks();
   }, []);
 
-  // ➕ Agregar una nueva tarea al estado
   const handleTaskCreated = (newTask) => {
     setTasks((prevTasks) => [newTask, ...prevTasks]);
   };
 
-  // 🗑️ Eliminar una tarea del estado
   const handleTaskDeleted = async (taskId) => {
     try {
       await taskService.delete(taskId);
@@ -52,10 +48,8 @@ const Dashboard = () => {
 
   return (
     <Box sx={{ flexGrow: 1, minHeight: "100vh", bgcolor: "#f5f5f5" }}>
-      {/* Barra de navegación superior unificada */}
       <Navbar />
 
-      {/* Contenedor Principal Responsive */}
       <Container maxWidth="lg" sx={{ mt: 4, pb: 4 }}>
         {error && (
           <Alert severity="error" sx={{ mb: 3 }}>
@@ -64,7 +58,6 @@ const Dashboard = () => {
         )}
 
         <Grid container spacing={4}>
-          {/* Columna Izquierda: Formulario (Fijo al hacer scroll en escritorio) */}
           <Grid size={{ xs: 12, md: 4 }}>
             <Box sx={{ position: { md: "sticky" }, top: 24 }}>
               <Typography
@@ -73,12 +66,10 @@ const Dashboard = () => {
               >
                 Crear Nueva Tarea
               </Typography>
-              {/* ✅ Renderizado directo sin contenedores duplicados */}
               <TaskForm onTaskCreated={handleTaskCreated} />
             </Box>
           </Grid>
 
-          {/* Columna Derecha: Lista de Tareas */}
           <Grid size={{ xs: 12, md: 8 }}>
             <Typography
               variant="h6"

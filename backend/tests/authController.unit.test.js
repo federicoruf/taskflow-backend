@@ -16,7 +16,7 @@ describe("authController", () => {
     jest.clearAllMocks();
   });
 
-  describe("Función: registerUser", () => {
+  describe("registerUser", () => {
     it("Debería responder con 201 y los datos del usuario si el registro es exitoso", async () => {
       const mockServiceResult = {
         _id: "user_123",
@@ -54,7 +54,7 @@ describe("authController", () => {
     });
   });
 
-  describe("Función: loginUser", () => {
+  describe("loginUser", () => {
     it("Debería responder con 200 y el token si las credenciales son válidas", async () => {
       const mockLoginResult = {
         _id: "user_123",

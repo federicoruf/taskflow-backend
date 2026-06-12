@@ -1,4 +1,4 @@
-const validate = require('../middlewares/validateMiddleware'); // Ajusta la ruta exacta de tu archivo
+const validate = require('../middlewares/validateMiddleware');
 
 describe('validateMiddleware', () => {
   let req;

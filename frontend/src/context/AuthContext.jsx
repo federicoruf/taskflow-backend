@@ -39,11 +39,9 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      // Invocamos al servicio desacoplado
       const data = await authService.register(name, email, password);
       const { token, ...userData } = data;
 
-      // Persistencia e inicio de sesión automático al registrarse
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
 

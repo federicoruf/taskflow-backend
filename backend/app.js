@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+
+const errorHandler = require('./middlewares/errorMiddleware');
 
 const app = express();
 
@@ -15,5 +19,7 @@ app.use('/api/tasks', taskRoutes);
 app.get('/', (req, res) => {
   res.send('La API de TaskFlow está funcionando correctamente');
 });
+
+app.use(errorHandler);
 
 module.exports = app;

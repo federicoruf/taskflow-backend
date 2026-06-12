@@ -1,15 +1,19 @@
+const logger = require("../config/logger");
+
 const errorHandler = (err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    
-    const response = {
-      message: err.message || 'Error interno del servidor',
-    };
+  const statusCode = err.statusCode || 500;
+
+  logger.error(`${statusCode} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
   
-    if (process.env.NODE_ENV !== 'production') {
-      response.stack = err.stack;
-    }
-  
-    res.status(statusCode).json(response);
+  const response = {
+    message: err.message || "Error interno del servidor",
   };
-  
-  module.exports = errorHandler;
+
+  if (process.env.NODE_ENV !== "production") {
+    response.stack = err.stack;
+  }
+
+  res.status(statusCode).json(response);
+};
+
+module.exports = errorHandler;

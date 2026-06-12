@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const logger = require("../config/logger");
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -41,6 +42,8 @@ const login = async (email, password) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
+
+  logger.info(`Usuario autenticado con éxito: ${email}`);
 
   return {
     _id: user._id,

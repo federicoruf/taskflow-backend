@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress,
   Alert,
+  Snackbar,
 } from "@mui/material";
 import TaskForm from "../components/TaskForm";
 import TaskCard from "../components/TaskCard";
@@ -16,6 +17,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deleteErrorOpen, setDeleteErrorOpen] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -42,8 +44,13 @@ const Dashboard = () => {
       await taskService.delete(taskId);
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
     } catch {
-      alert("Error al intentar eliminar la tarea.");
+      setDeleteErrorOpen(true);
     }
+  };
+
+  const handleCloseDeleteError = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setDeleteErrorOpen(false);
   };
 
   return (
@@ -108,6 +115,17 @@ const Dashboard = () => {
           </Grid>
         </Grid>
       </Container>
+
+      <Snackbar
+        open={deleteErrorOpen}
+        autoHideDuration={4000}
+        onClose={handleCloseDeleteError}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseDeleteError} severity="error" variant="filled" sx={{ width: '100%' }}>
+          Error al intentar eliminar la tarea.
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

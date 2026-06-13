@@ -6,7 +6,9 @@ import {
   IconButton, 
   Box, 
   Tooltip,
-  Chip 
+  Chip,
+  Snackbar,
+  Alert
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -17,6 +19,7 @@ import { taskService } from '../services/taskService';
 const TaskCard = ({ task, onDelete }) => {
   const [isCompleted, setIsCompleted] = useState(task.status === 'completada');
   const [updating, setUpdating] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
   const handleToggleComplete = async () => {
     try {
@@ -26,10 +29,15 @@ const TaskCard = ({ task, onDelete }) => {
       await taskService.updateStatus(task._id, nextState);
       setIsCompleted(nextState);
     } catch {
-      alert('No se pudo actualizar el estado de la tarea.');
+      setErrorOpen(true);
     } finally {
       setUpdating(false);
     }
+  };
+
+  const handleCloseError = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setErrorOpen(false);
   };
 
   return (
@@ -122,6 +130,17 @@ const TaskCard = ({ task, onDelete }) => {
         </Box>
 
       </CardContent>
+
+      <Snackbar
+        open={errorOpen}
+        autoHideDuration={4000}
+        onClose={handleCloseError}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseError} severity="error" variant="filled" sx={{ width: '100%' }}>
+          No se pudo actualizar el estado de la tarea.
+        </Alert>
+      </Snackbar>
     </Card>
   );
 };

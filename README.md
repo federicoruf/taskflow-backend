@@ -1,6 +1,6 @@
-# 🚀 TaskFlow - Sistema de Gestión de Tareas Multi-Inquilino
+# 🚀 TaskFlow - Sistema de Gestión de Tareas
 
-TaskFlow es una aplicación web full-stack para la gestión y asignación de tareas individuales y por equipo. Cuenta con una arquitectura desacoplada basada en servicios en el frontend, un sistema de autenticación seguro por JSON Web Tokens (JWT) y una interfaz responsiva de alta fidelidad conectada a una base de datos no relacional.
+TaskFlow es una aplicación web full-stack para la gestión y asignación de tareas. Cuenta con una arquitectura desacoplada basada en servicios en el frontend, un sistema de autenticación seguro por JSON Web Tokens (JWT) y una interfaz responsiva de alta fidelidad conectada a una base de datos no relacional.
 
 ---
 

@@ -103,8 +103,19 @@ npm run dev
 La aplicación web se desplegará en: `http://localhost:5173`
 
 ---
+## Pruebas del Backend (Módulo /backend)
+La suite incluye pruebas unitarias para la capa de servicios y pruebas de integración para los endpoints utilizando Jest y Supertest.
+Las pruebas unitarias están aisladas mediante mocks de Mongoose, por lo que pueden ejecutarse con total seguridad incluso si el contenedor de Docker se encuentra apagado.
+Respecto a las pruebas de integración, estas utilizan mongodb-memory-server por lo que tampoco es necesario iniciar el contenedor de Docker
 
-## Suite de Pruebas Automatizadas (Frontend)
+Para ejecutar los tests del backend en serie, corre:
+
+```bash
+cd backend
+npm run test
+```
+
+##  Pruebas del Frontend (Módulo /frontend)
 
 El frontend incluye pruebas de integración y comportamiento que garantizan el correcto funcionamiento del contexto de seguridad y el formulario según los contratos del Schema del servidor.
 

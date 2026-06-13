@@ -1,23 +1,10 @@
 const request = require('supertest');
 const app = require('../app');
-const mongoose = require('mongoose');
-const User = require('../models/User');
-const connectDB = require('../config/db');
 
 require('dotenv').config();
 
 describe('Suite de Pruebas: Autenticación y Usuarios', () => {
   const emailDePrueba = 'test_auth@example.com';
-
-  beforeAll(async () => {
-    await connectDB();
-    await User.deleteMany({ email: emailDePrueba });
-  });
-
-  afterAll(async () => {
-    await User.deleteMany({ email: emailDePrueba });
-    await mongoose.connection.close();
-  });
 
   it('Debería denegar el registro si los datos no pasan la validación de Zod', async () => {
     const res = await request(app)

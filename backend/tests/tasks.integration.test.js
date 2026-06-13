@@ -1,9 +1,7 @@
 const request = require('supertest');
 const app = require('../app');
-const mongoose = require('mongoose');
 const User = require('../models/User');
 const Task = require('../models/Task');
-const connectDB = require('../config/db');
 
 require('dotenv').config();
 
@@ -13,9 +11,6 @@ describe('Suite de Pruebas: Endpoints de Tareas (CRUD)', () => {
   const emailTareas = 'test_tasks@example.com';
 
   beforeAll(async () => {
-    await connectDB();
-    await User.deleteMany({ email: emailTareas });
-
     await request(app)
       .post('/api/auth/register')
       .send({
@@ -40,7 +35,6 @@ describe('Suite de Pruebas: Endpoints de Tareas (CRUD)', () => {
       await Task.deleteMany({ user: testUser._id });
       await User.deleteOne({ _id: testUser._id });
     }
-    await mongoose.connection.close();
   });
 
   it('Debería denegar el acceso (401) si se intenta listar tareas sin token', async () => {

@@ -12,7 +12,9 @@ export const taskService = {
   },
 
   updateStatus: async (id, completed) => {
-    const response = await API.put(`/tasks/${id}`, { completed });
+    const response = await API.put(`/tasks/${id}`, {
+      status: completed ? 'completada' : 'pendiente'
+    });
     return response.data;
   },
 

@@ -5,7 +5,7 @@ import { Box, TextField, Button, Paper, Typography } from "@mui/material";
 
 const validationSchema = Yup.object({
   title: Yup.string().required("El título de la tarea es obligatorio").min(3, "El título debe tener al menos 3 caracteres"),
-  description: Yup.string().required("La descripción es obligatoria").min(5, "La descripción debe tener al menos 3 caracteres"),
+  description: Yup.string().required("La descripción es obligatoria").min(5, "La descripción debe tener al menos 5 caracteres"),
   assignedTo: Yup.string()
     .required("El nombre del responsable es obligatorio")
     .min(2, "El nombre del responsable debe tener al menos 2 caracteres"),

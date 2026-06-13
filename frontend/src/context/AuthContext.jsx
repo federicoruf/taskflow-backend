@@ -18,6 +18,9 @@ export const AuthProvider = ({ children }) => {
         return null;
       }
     }
+    
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     return null;
   });
 

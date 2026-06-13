@@ -109,7 +109,7 @@ const Register = ({ onNavigateToLogin }) => {
               {submitting ? 'Registrando...' : 'Registrarse'}
             </Button>
 
-            <Box sx={{ textAlignment: 'center', mt: 1, display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ textAlign: 'center', mt: 1, display: 'flex', justifyContent: 'center' }}>
               <Link href="#" onClick={onNavigateToLogin} variant="body2" sx={{ underline: 'hover' }}>
                 ¿Ya tienes una cuenta? Inicia sesión
               </Link>
